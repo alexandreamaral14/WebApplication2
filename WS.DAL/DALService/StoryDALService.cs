@@ -18,6 +18,9 @@ namespace WS.DAL.DALService
         {
             try
             {
+                if (numberStories == default(int))
+                    throw new ArgumentNullException();
+
                 List<StoryEntity> result = new List<StoryEntity>();
                 RestClient restClient = new RestClient("https://hacker-news.firebaseio.com/v0/beststories.json");
                 var request = new RestRequest(Method.GET);
@@ -31,6 +34,30 @@ namespace WS.DAL.DALService
                 
 
                 return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public StoryEntity ReadStory(int id)
+        {
+            try
+            {
+                if (id == default(int))
+                    throw new ArgumentNullException();
+                List<StoryEntity> result = new List<StoryEntity>();
+                RestClient restClient = new RestClient("https://hacker-news.firebaseio.com/v0/item/" + id.ToString() + ".json");
+                var request = new RestRequest(Method.GET);
+                var requestResult = restClient.Execute<StoryEntity>(request);
+
+                if (requestResult.ResponseStatus != ResponseStatus.Completed)
+                    throw new Exception(requestResult.ErrorMessage);
+
+
+                return requestResult.Data;
             }
             catch (Exception ex)
             {

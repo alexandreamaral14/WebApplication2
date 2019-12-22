@@ -1,24 +1,17 @@
-﻿using RestSharp.Deserializers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace WS.DAL.Entities
+namespace WS.DTO.DTOs
 {
-    public class StoryEntity
+    public class StorieDTO
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        [DeserializeAs(Name = "url")]
         public string uri { get; set; }
-
-        [DeserializeAs(Name = "by")]
         public string PostedBy { get; set; }
-        [DeserializeAs(Name = "time")]
         public DateTime Date { get; set; }
         public int Score { get; set; }
-
-        [DeserializeAs(Name = "kids")]
-        public IEnumerable<int> CommentsID { get; set; }
+        public int NumberComments { get; set; }
     }
 }

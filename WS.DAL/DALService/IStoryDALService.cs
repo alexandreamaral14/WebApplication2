@@ -8,5 +8,6 @@ namespace WS.DAL.DALService
     public interface IStoryDALService
     {
         IEnumerable<StoryEntity> ListBestStories(int numberStories);
+        StoryEntity ReadStory(int id);
     }
 }
