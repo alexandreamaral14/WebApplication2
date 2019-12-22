@@ -14,11 +14,17 @@ namespace WS.DAL.DALService
         {
             
         }
+
+        /// <summary>
+        /// Return a list of ids of best stories. each number of the list is the id of the storie.
+        /// </summary>
+        /// <param name="numberStories">numbers of stories that we want to list</param>
+        /// <returns>IENumerable storyentity object with the ID propriety filled in</returns>
         public IEnumerable<StoryEntity> ListBestStories(int numberStories)
         {
             try
             {
-                if (numberStories == default(int))
+                if (numberStories == default(int) || numberStories >= 0)
                     throw new ArgumentNullException();
 
                 List<StoryEntity> result = new List<StoryEntity>();
@@ -42,6 +48,11 @@ namespace WS.DAL.DALService
             }
         }
 
+        /// <summary>
+        /// Read story associated to the given id
+        /// </summary>
+        /// <param name="id"> id of the story</param>
+        /// <returns>Story entity object with the story information</returns>
         public StoryEntity ReadStory(int id)
         {
             try
