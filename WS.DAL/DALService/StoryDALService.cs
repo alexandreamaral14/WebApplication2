@@ -24,7 +24,7 @@ namespace WS.DAL.DALService
         {
             try
             {
-                if (numberStories == default(int) || numberStories >= 0)
+                if (numberStories == default(int) || numberStories <= 0)
                     throw new ArgumentNullException();
 
                 List<StoryEntity> result = new List<StoryEntity>();
